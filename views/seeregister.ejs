@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>Records</title>
+	<script src="//code.jquery.com/jquery-1.11.2.min.js"></script>
+</head>
+<body>
+	<div align="center">
+	<h1>Total number of records: <%= recno %></h1>
+	</div>
+	<br><br>
+	<div align="center">
+		<% if(recno>0) { %>
+		<table border="2">
+		<tr>
+			<th>S.No</th>
+			<th>Name</th>
+			<th>Email Id</th>
+			<th>Phone Number</th>
+			<th>DOB</th>
+			<th></th>
+		</tr>
+			<% for(var i=0; i<recno; i++){  %>
+			<tr>
+				<td><%= i+1 %></td>
+				<td><%= data[i].name %></td>
+				<td><%= data[i].email %></td>
+				<td><%= data[i].phone %></td>
+				<td><%= data[i].dob %></td>
+				<td><button class="delbutton" name='<%= data[i].email %>' >Delete</button></td>
+			</tr>
+			<% } %>
+		</table>
+		<%} else { %>
+		<h1>No records found </h1>
+		<% } %>
+		<br><br>
+		<a href="/home"><button>BACK</button></a>
+	</div>
+
+
+	<script type="text/javascript">
+
+		$(function(){
+
+	      $(".delbutton").on('click', function(){
+	          var name = $(this).attr("name");
+	          $.ajax({
+	            type: 'DELETE',
+	            url: '/seeregister/' + name,
+	            success: function(data){
+	              
+	              location.reload();
+	            }
+	          });
+	      });
+
+		});
+	</script>
+	
+
+</body>
+</html>
