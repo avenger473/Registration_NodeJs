@@ -34,7 +34,11 @@ app.post('/register',urlep, function(req, res){
 	
 	//console.log(req.body);
 	
-	var newReg = Register({name: req.body.name, email: req.body.email, phone: req.body.phone, dob: req.body.date}).save(function(err){
+	var newReg = Register({name: req.body.name, 
+			       email: req.body.email, 
+			       phone: req.body.phone, 
+			       dob: req.body.date}
+			     ).save(function(err){
 	if(err) throw err;
 	JSAlert.alert("This is an alert.");
 	//res.write('Added');
