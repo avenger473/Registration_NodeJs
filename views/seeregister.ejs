@@ -26,8 +26,9 @@
 				<td><%= data[i].name %></td>
 				<td><%= data[i].email %></td>
 				<td><%= data[i].phone %></td>
-				<td><%= data[i].dob %></td>
-				<td><button class="delbutton" name='<%= data[i].email %>' >Delete</button></td>
+				<td><%= data[i].dob.toString().substring(3, 15) %></td>
+				<td><a href="/editregister/<%= data[i]._id %>"><button class="editbutton">Edit</button></a>
+					<button class="delbutton" name='<%= data[i]._id %>' >Delete</button></td>
 			</tr>
 			<% } %>
 		</table>
@@ -44,16 +45,17 @@
 		$(function(){
 
 	      $(".delbutton").on('click', function(){
-	          var name = $(this).attr("name");
+	          var id = $(this).attr("name");
 	          $.ajax({
 	            type: 'DELETE',
-	            url: '/seeregister/' + name,
+	            url: '/seeregister/' + id,
 	            success: function(data){
 	              
 	              location.reload();
 	            }
 	          });
 	      });
+
 
 		});
 	</script>
